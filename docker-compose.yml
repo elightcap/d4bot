@@ -4,4 +4,5 @@ services:
     container_name: d4bot
     build: ./
     image: d4bot:latest
-    restart: unless-stopped
+    volumes:
+      - /usr/bin/firefox:/usr/bin/firefox
