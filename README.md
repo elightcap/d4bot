@@ -5,7 +5,14 @@ This is a discord bot to notify when a World Boss is going to spawn.  It scrapes
 
 ## Installation
 
+### Docker (recommended)
+1. Install [Docker](https://docs.docker.com/get-docker/)
+2. Clone this repo. `git clone https://github.com/elightcap/d4bot`
+3. Move the sample.env and add your discord webhook to it. `cp sample.env .env && nano.env`
+4. Start the container. `docker compose up -d` or for older docker installs `docker-compose up -d`
+
+### Manually
 1. Clone this repo. `git clone https://github.com/elightcap/d4bot`
 2. Install dependencies. `pip install -r requirements.txt`
-3. Mov the sample.env and add your discord webhook to it. `cp sample.env .env && nano.env`
+3. Move the sample.env and add your discord webhook to it. `cp sample.env .env && nano.env`
 4. Run bot. `python3 main.py`
