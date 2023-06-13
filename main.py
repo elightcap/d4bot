@@ -44,6 +44,7 @@ def scrape_and_post_tweet():
             embed.add_embed_field(name="Boss", value=boss_name)
             embed.add_embed_field(name="Spawn Time", value=spawntime)
             embed.set_footer(text="https://github.com/elightcap/d4bot")
+            embed.set_timestamp()
             webhook = DiscordWebhook(url=discord_webhook_url, content="@here")
             webhook.add_embed(embed)
             response = webhook.execute()
@@ -54,7 +55,7 @@ def scrape_and_post_tweet():
         print("No tweets found for the specified user.")
 
 # Schedule the job to run every minute
-schedule.every(5).minutes.do(scrape_and_post_tweet)
+schedule.every(1).minutes.do(scrape_and_post_tweet)
 
 while True:
     schedule.run_pending()
