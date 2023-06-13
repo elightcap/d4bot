@@ -1,5 +1,5 @@
-discord_webhook==1.1.0
+discord_webhook
 python-dotenv==1.0.0
 schedule==1.2.0
 twitter_scraper_selenium==5.0.0
-requests==2.31.0
+requests==2.27.1
