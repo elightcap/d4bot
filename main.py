@@ -1,14 +1,15 @@
 from twitter_scraper_selenium import scrape_profile
 from discord_webhook import DiscordWebhook, DiscordEmbed
+from dotenv import load_dotenv
+import os
 import schedule
 import time
 import json
-from dotenv import load_dotenv
 
-loaddotenv()
+load_dotenv()
 
 # Discord webhook URL
-discord_webhook_url = os.getenv(DISCORD_WEBHOOK)
+discord_webhook_url = os.getenv("DISCORD_WEBHOOK")
 
 # Twitter user whose tweets you want to scrape
 twitter_username = 'game8_d4boss'
@@ -42,6 +43,7 @@ def scrape_and_post_tweet():
             embed.set_image(url=json_object[tweet_id]['images'][1])
             embed.add_embed_field(name="Boss", value=boss_name)
             embed.add_embed_field(name="Spawn Time", value=spawntime)
+            embed.set_footer(text="https://github.com/elightcap/d4bot")
             webhook = DiscordWebhook(url=discord_webhook_url, content="@here")
             webhook.add_embed(embed)
             response = webhook.execute()
@@ -52,7 +54,7 @@ def scrape_and_post_tweet():
         print("No tweets found for the specified user.")
 
 # Schedule the job to run every minute
-schedule.every(5).minutes.do(scrape_and_post_tweet)
+schedule.every(1).minutes.do(scrape_and_post_tweet)
 
 while True:
     schedule.run_pending()
