@@ -35,7 +35,7 @@ def scrape_and_post_tweet():
             then = now + timedelta(minutes=-5)
             post_time = json_object[tweet_id]['posted_time']
             post_dto = parser.parse(post_time)
-            if then > post_time:
+            if then > post_dto:
                 print("too old")
                 return
             latest_tweet_id = tweet_id
@@ -45,7 +45,10 @@ def scrape_and_post_tweet():
                 return
             # Post the tweet content to Discord
             split = tweet_content.split(' ')
-            boss_name = split[0]
+            if split[1]!="will" or "spawn" not in split[1]:
+                boss_name = f"{split[0]} {split[1]}"
+            else:
+                boss_name = split[0]
             spawntime = (f"{split[-3]} {split[-2]} {split[-1]}").strip("(")
             embed = DiscordEmbed(title='World Boss Spawning!', color='03b2f8')
             embed.set_thumbnail(url=json_object[tweet_id]['images'][0])
