@@ -1,6 +1,6 @@
 from twitter_scraper_selenium import scrape_profile
 from discord_webhook import DiscordWebhook, DiscordEmbed
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 import dateutil.parser as parser
 import os
