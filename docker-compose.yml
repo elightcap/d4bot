@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  d4bot:
+    container_name: d4bot
+    build: ./
+    image: d4bot:latest
+    restart: unless-stopped
