@@ -45,7 +45,7 @@ def scrape_and_post_tweet():
                 return
             # Post the tweet content to Discord
             split = tweet_content.split(' ')
-            if split[1]!="will" or "spawn" not in split[1]:
+            if split[1]!="will" and "spawn" not in split[1]:
                 boss_name = f"{split[0]} {split[1]}"
             else:
                 boss_name = split[0]
