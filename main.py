@@ -1,6 +1,8 @@
 from twitter_scraper_selenium import scrape_profile
 from discord_webhook import DiscordWebhook, DiscordEmbed
+from datetime import datetime, timezone
 from dotenv import load_dotenv
+import dateutil.parser as parser
 import os
 import schedule
 import time
@@ -29,6 +31,13 @@ def scrape_and_post_tweet():
 
         # Check if it's a new tweet
         if tweet_id != latest_tweet_id:
+            now = datetime.now(timezone.utc)
+            then = now + timedelta(minutes=-5)
+            post_time = json_object[tweet_id]['posted_time']
+            post_dto = parser.parse(post_time)
+            if then > post_time:
+                print("too old")
+                return
             latest_tweet_id = tweet_id
             tweet_content = json_object[tweet_id]['content']
             if("spawn" not in tweet_content):
