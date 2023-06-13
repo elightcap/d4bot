@@ -4,5 +4,3 @@ services:
     container_name: d4bot
     build: ./
     image: d4bot:latest
-    volumes:
-      - /usr/bin/firefox:/usr/bin/firefox

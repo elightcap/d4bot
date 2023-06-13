@@ -55,7 +55,7 @@ def scrape_and_post_tweet():
         print("No tweets found for the specified user.")
 
 # Schedule the job to run every minute
-schedule.every(1).minutes.do(scrape_and_post_tweet)
+schedule.every(5).minutes.do(scrape_and_post_tweet)
 
 while True:
     schedule.run_pending()
