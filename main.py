@@ -27,7 +27,7 @@ def scrape_and_post_tweet():
 
     if tweets:
         json_object = json.loads(tweets)
-        tweet_id = list(json_object.keys())[1]
+        tweet_id = list(json_object.keys())[2]
 
         # Check if it's a new tweet
         if tweet_id != latest_tweet_id:
@@ -50,9 +50,9 @@ def scrape_and_post_tweet():
                 boss_name = f"{split[0]} {split[1]}"
             else:
                 boss_name = split[0]
-            if len(split[-3]) < 2:
+            if len(split[-3]) < 6:
                 shittytime = split[-3].strip("(")
-                split[-3] = ("0{}".format(time))
+                split[-3] = ("0{}".format(shittytime))
             spawntime = (f"{split[-3]}:00 {split[-2]}").strip("(").strip(")")
             spawntimelong = timeconvert(spawntime)
             spawntimesplit = spawntimelong.split(":")
