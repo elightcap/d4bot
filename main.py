@@ -24,7 +24,7 @@ def scrape_and_post_tweet():
     soup = BeautifulSoup(response.content, "html.parser")
     timeline_container = soup.find("div", class_="timeline-container")
     tweet_elements = timeline_container.find_all("div", class_="timeline-item")
-    tweet = tweet_elements[2]
+    tweet = tweet_elements[1]
 
     now_utc = datetime.now(timezone.utc)
     oldtweettime = now_utc + timedelta(minutes=-1)
