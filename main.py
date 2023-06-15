@@ -38,7 +38,7 @@ def scrape_and_post_tweet():
         return
 
     tweet_content = tweet.find("div", class_="tweet-content media-body").text.strip()
-    if("spawn" not in tweet_content):
+    if("spawn" not in tweet_content.lower()):
         print("dont care")
         return
 
