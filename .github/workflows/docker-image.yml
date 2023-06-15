@@ -19,7 +19,11 @@ jobs:
     
     - uses: actions/checkout@v3
     - name: docker-build
-      run: docker build . --file Dockerfile --tag d4bot:$(date +%s)
+      run: docker build . --file Dockerfile
+      
+    - uses: actions/checkout@v3
+    - name: docker-tag
+      run: docker tag d4bot:$(date +%s) ghcr.io/elightcap/d4bot:$(date +%s)
       
     - uses: actions/checkout@v3
     - name: docker-push
