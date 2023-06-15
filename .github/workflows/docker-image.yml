@@ -1,4 +1,4 @@
-name: ci
+name: build & deploy
 
 on:
   push:
@@ -13,19 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: docker-login
-      run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u elightcap --password-stdin
-    
-    - uses: actions/checkout@v3
-    - name: docker-build
-      run: docker build . --file Dockerfile --tag d4bot:$(date +%s)
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+        
+      - name: docker-login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: elightcap
+          password: ${{ secrets.GHCR_TOKEN }}
       
-    - uses: actions/checkout@v3
-    - name: docker-tag
-      run: docker tag d4bot:$(date +%s) ghcr.io/elightcap/d4bot:$(date +%s)
-      
-    - uses: actions/checkout@v3
-    - name: docker-push
-      run: docker push ghcr.io/elightcap/d4bot:$(date +%s)
-    
+      - name: 'Build & push'
+        run: |
+          docker build . --tag ghcr.io/elightcap/d4bot:latest
+          docker push ghcr.io/elightcap/d4bot:latest
