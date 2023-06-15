@@ -92,9 +92,9 @@ def timeconvert(str1):
         return str(int(str1[:2]) + 12) + str1[2:8]
 
 # Schedule the job to run every minute
+print("Start!")
 schedule.every(5).minutes.do(scrape_and_post_tweet)
 
 while True:
-    print("running")
     schedule.run_pending()
     time.sleep(1)
