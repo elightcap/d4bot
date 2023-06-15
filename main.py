@@ -63,7 +63,7 @@ def scrape_and_post_tweet():
             #to unix timestamp. its split at "." to strip milliseconds out.
             spawntimeobject = datetime(now_est.year,now_est.month,now_est.day,int(spawntimesplit[0]),int(spawntimesplit[1]),int(spawntimesplit[2]))
             spawngmt = spawntimeobject + timedelta(hours=4)
-            unixtime = str((time.mktime(spawntimeobject.timetuple()))).split(".")[0]
+            unixtime = str((time.mktime(spawngmt.timetuple()))).split(".")[0]
             #send the discord message
             embed = DiscordEmbed(title='World Boss Spawning!', color='03b2f8')
             embed.set_thumbnail(url=json_object[tweet_id]['images'][0])
