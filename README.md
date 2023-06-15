@@ -20,3 +20,8 @@ NOTE: First run might take a little while because we need to install Firefox ins
 5. Run bot. `python3 main.py`
 
 Recommend using something like tmux when building manually.
+
+## Updating
+1. Navigate to repo directory. `cd /path/to/dir`
+2. Pull new image. `docker compose pull`
+3. Re-up the container. `docker compose up -d`
