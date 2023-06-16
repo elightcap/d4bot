@@ -20,14 +20,17 @@ NITTER_URL = "https://nitter.1d4.us/game8_d4boss"
 UTC=pytz.UTC
 
 def scrape_and_post_tweet():
-    response = requests.get(NITTER_URL)
+    try:
+        response = requests.get(NITTER_URL)
+    except:
+        print("maybe site is dead, will try again later")
     soup = BeautifulSoup(response.content, "html.parser")
     timeline_container = soup.find("div", class_="timeline-container")
     tweet_elements = timeline_container.find_all("div", class_="timeline-item")
     tweet = tweet_elements[1]
 
     now_utc = datetime.now(timezone.utc)
-    oldtweettime = now_utc + timedelta(minutes=-1)
+    oldtweettime = now_utc + timedelta(minutes=-5)
     tweet_timestamp = tweet.find("span", class_="tweet-date")
     thetime = (tweet_timestamp.find("a"))["title"]
     utctweettime = datetime.strptime(thetime, '%b %d, %Y · %I:%M %p %Z')
@@ -72,7 +75,7 @@ def scrape_and_post_tweet():
     response = webhook.execute()
 
 print("start")
-schedule.every(1).minutes.do(scrape_and_post_tweet)
+schedule.every(5).minutes.do(scrape_and_post_tweet)
 
 while True:
     schedule.run_pending()
