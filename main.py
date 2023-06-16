@@ -38,10 +38,12 @@ def scrape_and_post_tweet():
         return
 
     tweet_content = tweet.find("div", class_="tweet-content media-body").text.strip()
-    if("spawn" not in tweet_content.lower()):
+    if "spawn" not in tweet_content.lower():
         print("dont care")
         return
-
+    if "predict" in tweet_content.lower():
+        print("dont care")
+        return
     split = tweet_content.split(" ")
     if split[1]!="will" and "spawn" not in split[1]:
         boss_name = f"{split[0]} {split[1]}"
